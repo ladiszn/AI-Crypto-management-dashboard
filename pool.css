@@ -1,0 +1,94 @@
+.pool-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .pool-th, .pool-td {
+      border: 1px solid #e0e0e0;
+      padding: 12px 15px;
+      text-align: left;
+    }
+    .pool-th {
+      background-color: #f8f8f8;
+      color: #333;
+      font-weight: 600;
+    }
+    .pool-td {
+      color: #555;
+    }
+    .pool-row:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .pool-button {
+      padding: 8px 16px;
+      background: linear-gradient(90deg,#3b6bff,#2e96ff 65%,#acb7ff);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      animation: pool-button-hover 4s ease-in-out infinite;
+    }
+    .pool-button:hover {
+      opacity: 0.85;
+    }
+
+    @keyframes pool-button-hover {
+      0% {
+        background: linear-gradient(90deg,#3b6bff,#2e96ff 65%,#acb7ff);
+      }
+      25% {
+        background: linear-gradient(120deg,#3b6bff,#2e96ff 65%,#acb7ff);
+      }
+      50% {
+        background: linear-gradient(240deg,#3b6bff,#2e96ff 65%,#acb7ff);
+      }
+      75% {
+        background: linear-gradient(360deg,#3b6bff,#2e96ff 65%,#acb7ff);
+      }
+      100% {
+        background: linear-gradient(90deg,#3b6bff,#2e96ff 65%,#acb7ff);
+      }
+    }
+
+    /* Hide columns on mobile for the pool tables */
+    @media (max-width: 600px) {
+      .pool-table-1 .pool-th:nth-child(1), .pool-table-1 .pool-td:nth-child(1),  /* Pool ID */
+      .pool-table-1 .pool-th:nth-child(3), .pool-table-1 .pool-td:nth-child(3),  /* Created At */
+      .pool-table-2 .pool-th:nth-child(1), .pool-table-2 .pool-td:nth-child(1),  /* Pool ID */
+      .pool-table-2 .pool-th:nth-child(3), .pool-table-2 .pool-td:nth-child(3)   /* Created At */ {
+        display: none;
+      }
+    }
+    
+    .pool-row.center * {
+      text-align: center !important;
+    }
+    
+    .search-container {
+      height: 3.5em;
+      width: 20em;
+      background: #efefef;
+      padding: 0 1em;
+      border-radius: .3em;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .search-container input {
+      height: 100%;
+      padding: 0 1em;
+      border: none;
+      color: #333;
+      background: transparent;
+      width: 95%;
+    }
+    .bi-incognito {
+      color: #333;
+    }
+    
+    #pool-layout:checked ~ .pool-layout {
+      display: block;
+    }

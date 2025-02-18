@@ -1,0 +1,71 @@
+
+.deposits-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  overflow: hidden;
+  margin-top: 2em;
+}
+
+.deposits-table thead {
+  background-color: #efefef;
+}
+
+.deposits-table th, .deposits-table td {
+  padding: 15px 20px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: #555;
+}
+
+.deposits-table th {
+  font-weight: 600;
+}
+
+.deposits-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.status-dropdown {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+.action-btn {
+  padding: 8px 16px;
+  background-color: #ccc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: not-allowed;
+  transition: background-color 0.3s;
+}
+
+.action-btn.enabled {
+  background-color: #4caf50;
+  cursor: pointer;
+}
+
+.action-btn.enabled:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+  .deposits-table th:nth-child(1), /* Hide User ID on mobile */
+  .deposits-table td:nth-child(1),
+  .deposits-table th:nth-child(4), /* Hide Type on mobile */
+  .deposits-table td:nth-child(4),
+  .deposits-table th:nth-child(5), /* Hide Timestamp on mobile */
+  .deposits-table td:nth-child(5) {
+    display: none;
+  }
+}
+
+
+#deposits-layout:checked ~ .deposits-layout {
+  display: block;
+}
