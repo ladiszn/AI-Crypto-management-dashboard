@@ -1,0 +1,258 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-style: normal;
+  transition: .2s ease-in;
+}
+*:focus {
+  outline: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+.neon {
+    background: linear-gradient(90deg,#3b6bff,#2e96ff 65%,#acb7ff);
+}
+.neon-box {
+    border-radius: 12px;
+    box-shadow: 0 0 11px rgba(0, 255, 255, 0.8), 0 0 20px 0px rgba(255, 0, 128, 0.8);
+}
+#installButton {
+  border: none;
+  padding: .6em 2em;
+  position: fixed;
+  bottom: 1em;
+  left: 2em;
+  border-radius: .3em;
+  color: #fff;
+}
+.container {
+  display: flex;
+  height: 100vh;
+}
+.sidebar {
+  background: #efefef;
+  height: 100%;
+  width: 5em;
+  display: flex;
+  justify-content: start;
+  padding: 2em 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+.sidebar label {
+  display: flex;
+  height: 3em;
+  min-width: 3em;
+  background: #fff;
+  color: #333;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.sidebar label span {
+  background: linear-gradient(90deg,#3b6bff,#2e96ff 65%,#acb7ff);
+  color: transparent;
+  -webkit-background-clip: text;
+}
+.hidden-text {
+  width: 0;
+  overflow: hidden;
+}
+.sidebar:hover {
+  width: 20em;
+}
+.sidebar:hover .hidden-text {
+  width: 10em;
+}
+.sidebar:hover label {
+  border-radius: 9999px;
+  padding: 0 1em;
+  display: flex;
+  gap: 1em;
+}
+main {
+  flex: 1;
+}
+header {
+  display: flex;
+  height: 4em;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+}
+.show-subscription {
+  color: #333;
+  font-size: 1.1em;
+  display: flex;
+  gap: .4em;
+  align-items: center;
+  cursor: pointer;
+}
+.subscription-status {
+  height: 9em;
+  width: 20em;
+  position: fixed;
+  top: 5em;
+  left: 6em;
+  padding: 1em;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+}
+.text-image {
+  display: flex;
+  align-items: center;
+  gap: .6em;
+}
+.text-image img {
+  width: 3em;
+}
+span.name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+span.name a {
+  color: #efefef;
+ /* background: #bfbfbf; */
+  padding: .5em 1em;
+  border-radius: .3em;
+  text-decoration: none;
+  font-size: .9em;
+}
+span.name p {
+  color: #999;
+}
+main {
+  display: flex;
+  flex-direction: column;
+}
+.layout {
+  flex: 1;
+  overflow: scroll;
+  padding: 0 1em;
+  display: none;
+}
+input[type=radio] {
+  display: none;
+}
+.custom-message {
+  height: 4em;
+  background: #fff;
+  padding: 0 1em;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 1em;
+  width: 90%;
+  right: 5%;
+  max-width: 40em;
+  white-space: nowrap;
+  overflow: hidden;  
+  text-overflow: ellipsis;    
+  padding-top: 1em;
+}
+
+.table-cover {
+  overflow: scroll;
+  width: 100%;
+}
+.auth {
+    height: 100vh;
+    width: 100vw;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    background: #ffffffb8;
+}
+button#signInWithGoogle {
+    background: linear-gradient(90deg, #3b6bff, #2e96ff 65%, #acb7ff);
+    border: none;
+    height: 3em;
+    border-radius: 9999px;
+    width: 12em;
+    color: #fff;
+    font-weight: 600;
+}
+
+
+@media (max-width: 48em) {
+  .container {
+    display: block;
+  }
+  .sidebar {
+    width: 100%;
+        overflow: scroll;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        padding: 0 1em;
+        height: 5em;
+        background: #fff;
+  }
+  .sidebar-carousel {
+    white-space: nowrap;
+    width: 100%;
+}
+  .sidebar label {
+        border-radius: 9999px;
+        /* padding: 0 1em; */
+        display: inline-flex
+;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        background: #efefef;
+        margin-right: 2em;
+    }
+  .hidden-text {
+  width: 0;
+  overflow: hidden;
+}
+    .sidebar:hover {
+        width: 100%;
+        overflow: scroll;
+        align-items: center;
+        justify-content: center;
+        display: flex
+;
+    }
+.sidebar:hover .hidden-text {
+  display: none;
+}
+.sidebar:hover label {
+        border-radius: 9999px;
+        /* padding: 0 1em; */
+        display: inline-flex
+;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+    .subscription-status {
+  height: 9em;
+  width: 90%;
+  position: fixed;
+ bottom: 1em;
+  left: 5%;
+  top: initial;
+  padding: 1em;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+}
+}

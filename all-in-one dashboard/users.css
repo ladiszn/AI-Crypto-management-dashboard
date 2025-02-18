@@ -1,0 +1,76 @@
+#users-layout:checked ~ .users-layout {
+  display: block;
+}
+#users-list .user-card {
+  background-color: #fff;
+  padding: 20px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#users-list .user-card:hover {
+  background-color: #f9f9f9;
+}
+
+#users-list .details {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+      overflow: scroll;
+}
+
+#users-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #fff;
+  border: 2px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(90deg, #0ff 0%, #f0f 100%);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 10px rgba(255, 0, 255, 0.5);
+  border-radius: 5px;
+}
+
+#users-list th, 
+#users-list td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+#users-list th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+#users-list td {
+  background-color: #fff;
+}
+
+#users-list tr:hover {
+  background-color: #f0f0f0;
+}
+
+/* Add styles for the search bar */
+/* #search-bar {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border: 2px solid #0ff;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#search-bar:focus {
+  border-color: #f0f;
+}
+*/

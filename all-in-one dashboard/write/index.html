@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="notifications">
+        <div class="error-list">
+            <!-- Error list will be dynamically populated here -->
+        </div>
+        <div class="ai-assistant">
+            <input type="text" id="sapphire-assistant" placeholder="Enter new error message">
+            <button id="addError">Add Error</button>
+        </div>
+        <div class="delete-section">
+            <input type="text" id="delete-error-id" placeholder="Enter error ID to delete">
+            <button id="deleteError">Delete Error</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
