@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="pool.css" type="text/css" media="all" />
   <link rel="stylesheet" href="withdrawal.css" type="text/css" media="all" />
   <link rel="stylesheet" href="deposits.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="error.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="error.css" typpe="text/css" media="all" />
   <link rel="stylesheet" href="users.css" type="text/css" media="all" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,6 +73,13 @@ people
 </span>
 
 <p class="hidden-text">Users</p>
+</label>
+
+<label id="support">
+<span class="material-symbols-outlined">
+automation
+</span>
+<p class="hidden-text">Support</p>
 </label>
 
 <label id="signOut">
@@ -259,5 +266,10 @@ send
       <script src="deposits.js"></script>
       <script src="error.js"></script>
       <script src="users.js"></script>
+<script>
+  document.getElementById("support").addEventListener("click", function() {
+    window.location.href = "support/";
+});
 
+</script>
 </body>

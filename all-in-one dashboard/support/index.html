@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Service Dashboard</title>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+    
+    <!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+  <a class="back-home" href="/"><i class="bi bi-arrow-left"></i> Back to vault</a>
+<label for="openList"><i class="bi bi-chevron-double-right"></i></label>
+    <div class="dashboard-container">
+        <!-- Sidebar for User List -->
+        <input type="checkbox" id="openList">
+        <aside class="sidebar">
+            <h2>Users</h2>
+            
+            <ul id="users" class="user-list"></ul>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-section">
+            <h1>Customer Service Dashboard</h1>
+
+            <div class="chat-container">
+                <h2 id="chatWith">Chat</h2>
+                <div class="messages" id="messages"></div>
+
+                <div class="message-input-container">
+                    <input type="text" id="messageInput" placeholder="Type your message...">
+                    
+                    <select id="languageSelect">
+                        <option value="english">English</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="tagalog">Tagalog</option>
+                    </select>
+
+                    <button id="sendButton">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
