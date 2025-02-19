@@ -26,7 +26,7 @@ function populatePoolTable(snapshot) {
                                 const row1 = document.createElement('tr');
                                 row1.className = 'pool-row';
                                 row1.innerHTML = `
-                                    <td class="pool-td">${poolId}</td>
+                                    <td class="pool-td">${userId}</td>
                                     <td class="pool-td">$${pool.amount || 0}</td>
                                     <td class="pool-td">${createdAt.toLocaleString()}</td>
                                     <td class="pool-td countdown"></td>
@@ -54,7 +54,7 @@ function populatePoolTable(snapshot) {
                             const row2 = document.createElement('tr');
                             row2.className = 'pool-row';
                             row2.innerHTML = `
-                                <td class="pool-td">${poolId}</td>
+                                <td class="pool-td">${userId}</td>
                                 <td class="pool-td">$${pool.amount || 0}</td>
                                 <td class="pool-td">${createdAt.toLocaleString()}</td>
                                 <td class="pool-td">${pool.win ? 'Won' : 'Lost'}</td>
