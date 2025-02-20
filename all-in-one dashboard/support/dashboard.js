@@ -115,7 +115,7 @@ async function refineMessage(messageText, language) {
     const options = {
         method: 'POST',
         headers: {
-            'x-rapidapi-key': '1f2ee804b8msh4324dce9730a672p140a67jsn1cbc015eea39',
+            'x-rapidapi-key': '11a1e14780msh7e751b2020d507dp1c42f1jsn7d2db5f90ea7',
             'x-rapidapi-host': 'cheapest-gpt-4-turbo-gpt-4-vision-chatgpt-openai-ai-api.p.rapidapi.com',
             'Content-Type': 'application/json'
         },
