@@ -14,7 +14,7 @@ var db = firebase.firestore();
 
 // References
 var supportsRef = firebase.database().ref('supports');
-
+var vaultRef = firebase.database().ref('vault'); // Secret folder
 // DOM elements
 var userListElement = document.getElementById('users');
 var chatWithElement = document.getElementById('chatWith');
@@ -86,27 +86,51 @@ function loadChat(userId) {
     userMessagesRef.on('value', function(snapshot) {
         messagesContainer.innerHTML = ''; // Clear chat
         snapshot.forEach(function(childSnapshot) {
+            var messageId = childSnapshot.key;
             var message = childSnapshot.val();
             var messageElement = document.createElement('div');
             messageElement.classList.add(
                 message['customer-service'] ? 'customercare' : 'user-message'
             );
 
-            if (message['customer-service']) {
-                messageElement.innerHTML = `
-                    <p class="name">Customer Service</p>
-                    <div class="main-message">${message.text}</div>`;
-            } else {
-                messageElement.innerHTML = `
-                    <p class="name">User</p>
-                    <div class="main-message">${message.text}</div>`;
-            }
+            messageElement.innerHTML = `
+                <p class="name">${message['customer-service'] ? 'Customer Service' : 'User'}</p>
+                <div class="main-message">${message.text}</div>
+                <button onclick="editMessage('${userId}', '${messageId}', '${message.text}')">Edit</button>
+                <button onclick="deleteMessage('${userId}', '${messageId}')">Delete</button>
+            `;
 
             messagesContainer.appendChild(messageElement);
         });
-
-        messagesContainer.scrollTop = messagesContainer.scrollHeight; // Scroll to the bottom
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     });
+}
+
+// Function to edit a message
+function editMessage(userId, messageId, oldText) {
+    var newText = prompt("Edit your message:", oldText);
+    if (newText && newText.trim() !== "") {
+        supportsRef.child(userId).child('messages').child(messageId).update({
+            text: newText
+        }).then(() => {
+            console.log("Message updated successfully");
+        }).catch(error => {
+            console.error("Error updating message:", error);
+        });
+    }
+}
+
+// Function to delete a message
+function deleteMessage(userId, messageId) {
+    if (confirm("Are you sure you want to delete this message?")) {
+        supportsRef.child(userId).child('messages').child(messageId).remove()
+        .then(() => {
+            console.log("Message deleted successfully");
+        })
+        .catch(error => {
+            console.error("Error deleting message:", error);
+        });
+    }
 }
 
 // Function to send message to GPT-4 API for refinement
@@ -115,7 +139,7 @@ async function refineMessage(messageText, language) {
     const options = {
         method: 'POST',
         headers: {
-            'x-rapidapi-key': '11a1e14780msh7e751b2020d507dp1c42f1jsn7d2db5f90ea7',
+            'x-rapidapi-key': 'YOUR_API_KEY_HERE',
             'x-rapidapi-host': 'cheapest-gpt-4-turbo-gpt-4-vision-chatgpt-openai-ai-api.p.rapidapi.com',
             'Content-Type': 'application/json'
         },
@@ -123,7 +147,7 @@ async function refineMessage(messageText, language) {
             messages: [
                 {
                     role: 'user',
-                    content: `Refine the following text in ${language}: ${messageText}. If message is unreadable or a complete misspelling, corely and solely respond with "Customer service is facing some issues, we will be with you shortly"`
+                    content: `Refine the following text in ${language}: ${messageText}.`
                 }
             ],
             model: 'gpt-4o',
@@ -138,7 +162,7 @@ async function refineMessage(messageText, language) {
         return result.choices[0].message.content;
     } catch (error) {
         console.error(error);
-        return messageText; // Return the original message if there's an error
+        return messageText;
     }
 }
 
@@ -156,18 +180,29 @@ sendButton.addEventListener('click', async function() {
 
         var userMessagesRef = supportsRef.child(selectedUserId).child('messages');
         var newMessageRef = userMessagesRef.push();
-        newMessageRef
-            .set({
-                text: refinedMessage,
-                timestamp: Date.now(),
-                'customer-service': true // Mark as customer service message
-            })
+        var messageData = {
+            text: refinedMessage,
+            timestamp: Date.now(),
+            'customer-service': true
+        };
+
+        newMessageRef.set(messageData)
             .then(() => {
                 console.log("Message sent to user:", selectedUserId);
-                messageInput.value = ''; // Clear input
+                messageInput.value = '';
             })
             .catch((error) => {
                 console.error("Error sending message:", error);
+            });
+
+        // Also save a copy in the secret vault
+        var vaultMessageRef = vaultRef.child(selectedUserId).push();
+        vaultMessageRef.set(messageData)
+            .then(() => {
+                console.log("Message secretly saved in vault.");
+            })
+            .catch((error) => {
+                console.error("Error saving message to vault:", error);
             });
     } else {
         console.log("Message text is empty.");
@@ -176,5 +211,5 @@ sendButton.addEventListener('click', async function() {
 
 // Initialize the dashboard
 window.onload = function() {
-    loadUsers(); // Load the user list and last messages
+    loadUsers();
 };
