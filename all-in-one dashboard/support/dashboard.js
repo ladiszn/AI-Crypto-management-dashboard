@@ -139,7 +139,7 @@ async function refineMessage(messageText, language) {
     const options = {
         method: 'POST',
         headers: {
-            'x-rapidapi-key': 'YOUR_API_KEY_HERE',
+            'x-rapidapi-key': '11a1e14780msh7e751b2020d507dp1c42f1jsn7d2db5f90ea7',
             'x-rapidapi-host': 'cheapest-gpt-4-turbo-gpt-4-vision-chatgpt-openai-ai-api.p.rapidapi.com',
             'Content-Type': 'application/json'
         },
@@ -159,12 +159,20 @@ async function refineMessage(messageText, language) {
     try {
         const response = await fetch(url, options);
         const result = await response.json();
-        return result.choices[0].message.content;
+
+        // Ensure choices array exists and has at least one element
+        if (result.choices && result.choices.length > 0 && result.choices[0].message) {
+            return result.choices[0].message.content;
+        } else {
+            console.error("Unexpected API response:", result);
+            return messageText; // Return original message if API fails
+        }
     } catch (error) {
-        console.error(error);
+        console.error("Error refining message:", error);
         return messageText;
     }
 }
+
 
 // Send a message to the selected user's folder
 sendButton.addEventListener('click', async function() {
